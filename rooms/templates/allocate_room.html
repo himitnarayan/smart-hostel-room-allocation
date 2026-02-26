@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3>Allocate Room</h3>
+
+<form method="POST" class="mb-4">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Allocate</button>
+</form>
+
+{% if allocated_room %}
+<div class="alert alert-success">
+    <h5>Room Allocated Successfully</h5>
+    <p><strong>Room No:</strong> {{ allocated_room.room_no }}</p>
+    <p><strong>Remaining Seats:</strong> {{ allocated_room.available_seats }}</p>
+</div>
+{% endif %}
+
+{% if message %}
+<div class="alert alert-danger">
+    {{ message }}
+</div>
+{% endif %}
+
+{% endblock %}

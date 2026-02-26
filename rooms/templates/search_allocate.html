@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card shadow mb-4">
+    <div class="card-header bg-info text-white">
+        <h4>Search & Allocate Room</h4>
+    </div>
+
+    <div class="card-body">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Allocate Room</button>
+        </form>
+    </div>
+</div>
+
+{% if allocated_room %}
+<div class="alert alert-success shadow">
+    <h5>Room Allocated Successfully!</h5>
+    <p><strong>Room No:</strong> {{ allocated_room.room_no }}</p>
+    <p><strong>Capacity:</strong> {{ allocated_room.capacity }}</p>
+</div>
+{% endif %}
+
+{% if message %}
+<div class="alert alert-danger shadow">
+    {{ message }}
+</div>
+{% endif %}
+
+{% endblock %}
