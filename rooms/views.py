@@ -4,13 +4,13 @@ from .forms import RoomForm, SearchForm, AllocationForm
 from .services import search_rooms, allocate_room
 
 
-# 🏠 HOME - View All Rooms
+
 def room_list(request):
     rooms = Room.objects.all()
     return render(request, 'room_list.html', {'rooms': rooms})
 
 
-# ➕ Add Room
+
 def add_room(request):
     form = RoomForm(request.POST or None)
 
@@ -21,7 +21,7 @@ def add_room(request):
     return render(request, 'add_room.html', {'form': form})
 
 
-# 🔍 Search Rooms
+
 def search_room_view(request):
     form = SearchForm(request.GET or None)
     rooms = Room.objects.all()
@@ -39,7 +39,7 @@ def search_room_view(request):
     })
 
 
-# 🎯 Allocate Student
+
 def allocate_room_view(request):
     form = AllocationForm(request.POST or None)
     allocated_room = None
@@ -68,7 +68,6 @@ def allocate_room_view(request):
     })
 
 
-# 🏨 Room Detail (See Students Inside)
 def room_detail(request, room_id):
     room = get_object_or_404(Room, id=room_id)
     students = room.students.all()

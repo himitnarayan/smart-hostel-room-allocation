@@ -1,7 +1,6 @@
 from .models import Room, Allocation
 
 
-# 🔍 Search Logic
 def search_rooms(min_capacity=None, has_ac=False, has_washroom=False):
     rooms = Room.objects.all()
 
@@ -17,7 +16,6 @@ def search_rooms(min_capacity=None, has_ac=False, has_washroom=False):
     return rooms
 
 
-# 🎯 Smart Allocation Logic
 def allocate_room(student_name, student_roll_number, needs_ac, needs_washroom):
 
     # Get rooms matching requirements
