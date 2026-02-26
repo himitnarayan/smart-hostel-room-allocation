@@ -17,25 +17,31 @@ def search_rooms(min_capacity=None, has_ac=False, has_washroom=False):
     return rooms
 
 
-# 🎯 Allocation Logic
-def allocate_room(students, needs_ac, needs_washroom):
+# 🎯 Smart Allocation Logic
+def allocate_room(student_name, student_roll_number, needs_ac, needs_washroom):
 
+    # Get rooms matching requirements
     rooms = Room.objects.filter(
-        capacity__gte=students,
         has_ac=needs_ac,
         has_attached_washroom=needs_washroom
     ).order_by('capacity')
 
     for room in rooms:
-        if room.available_seats() >= students:
-            room.occupied += students
+        # Check if room has available seat
+        if room.available_seats() > 0:
+
+            # Update occupied count
+            room.occupied += 1
             room.save()
 
+            # Create allocation record
             Allocation.objects.create(
                 room=room,
-                students_allocated=students
+                student_name=student_name,
+                student_roll_number=student_roll_number
             )
 
             return room
 
+    # If no room available
     return None

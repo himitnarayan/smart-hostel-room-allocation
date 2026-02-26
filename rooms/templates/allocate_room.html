@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h3>Allocate Room</h3>
+<h3>Allocate Student</h3>
 
 <form method="POST" class="mb-4">
     {% csrf_token %}
@@ -14,7 +14,6 @@
 <div class="alert alert-success">
     <h5>Room Allocated Successfully</h5>
     <p><strong>Room No:</strong> {{ allocated_room.room_no }}</p>
-    <p><strong>Remaining Seats:</strong> {{ allocated_room.available_seats }}</p>
 </div>
 {% endif %}
 

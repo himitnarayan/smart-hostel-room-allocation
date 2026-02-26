@@ -76,9 +76,12 @@ WSGI_APPLICATION = "hostel_project.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
+import dj_database_url
+import os
+
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL')
+        default='postgresql://postgres:Somu2004@localhost:5432/hostel_db'
     )
 }
 

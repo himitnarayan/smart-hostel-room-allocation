@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3>Room {{ room.room_no }}</h3>
+
+<p><strong>Capacity:</strong> {{ room.capacity }}</p>
+<p><strong>Occupied:</strong> {{ room.occupied }}</p>
+<p><strong>Available Seats:</strong> {{ room.available_seats }}</p>
+
+<hr>
+
+<h4>Students in this Room</h4>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Name</th>
+        <th>Roll Number</th>
+    </tr>
+
+    {% for student in students %}
+    <tr>
+        <td>{{ student.student_name }}</td>
+        <td>{{ student.student_roll_number }}</td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="2">No students allocated</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<a href="/" class="btn btn-secondary">Back to Home</a>
+
+{% endblock %}
